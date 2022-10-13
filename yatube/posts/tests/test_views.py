@@ -187,6 +187,7 @@ class TaskPagesTests(TestCase):
         self.assertEqual(r_1, r_2)
 
     def test_follow_page(self):
+        """ Проверка подписок """
         response = self.authorized_client.get(reverse('posts:follow_index'))
         self.assertEqual(len(response.context['page_obj']), 0)
         Follow.objects.get_or_create(user=self.user, author=self.post.author)

@@ -88,7 +88,6 @@ def add_comment(request, post_id):
 
 @login_required
 def profile_follow(request, username):
-    # Подписаться на автора
     user = request.user
     author = get_object_or_404(User, username=username)
     if user != author:
@@ -100,7 +99,6 @@ def profile_follow(request, username):
 
 @login_required
 def profile_unfollow(request, username):
-    # Дизлайк, отписка
     author = get_object_or_404(User, username=username)
     Follow.objects.filter(user=request.user, author=author).delete()
     return redirect('posts:follow_index')

@@ -44,7 +44,7 @@ class Post(models.Model):
         ordering = ['-pub_date']
 
 
-class Comments (models.Model):
+class Comment (models.Model):
     post = models.ForeignKey(
         Post, null=True, blank=True,
         on_delete=models.CASCADE, related_name='comments',
