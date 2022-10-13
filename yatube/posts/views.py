@@ -91,8 +91,8 @@ def profile_follow(request, username):
     user = request.user
     author = get_object_or_404(User, username=username)
     if (
-            (user != author) and
-            (Follow.objects.filter(user=user, author=author).count() == 0)
+            (user != author) and (Follow.objects.filter
+                                  (user=user, author=author).count() == 0)
     ):
         Follow.objects.create(
             user=user,
