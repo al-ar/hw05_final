@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
-from ..models import Post, Group, Comments, Follow
+from ..models import Post, Group, Comment, Follow
 from django import forms
 from django.core.files.uploadedfile import SimpleUploadedFile
 
@@ -163,7 +163,7 @@ class TaskPagesTests(TestCase):
 
     def test_comment_correct_context(self):
         """Коммент создает запись в Post_detail."""
-        comments_count = Comments.objects.count()
+        comments_count = Comment.objects.count()
         form_data = {'text': 'Тестовый коммент'}
         response = self.authorized_client.post(
             reverse('posts:add_comment', kwargs={'post_id': self.post.id}),
@@ -174,8 +174,8 @@ class TaskPagesTests(TestCase):
             response, reverse('posts:post_detail',
                               kwargs={'post_id': self.post.id})
         )
-        self.assertEqual(Comments.objects.count(), comments_count + 1)
-        self.assertTrue(Comments.objects.filter(post_id=self.post.id).exists())
+        self.assertEqual(Comment.objects.count(), comments_count + 1)
+        self.assertTrue(Comment.objects.filter(post_id=self.post.id).exists())
 
     def test_check_cache(self):
         """Проверка кеша."""
