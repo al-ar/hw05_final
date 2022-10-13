@@ -175,7 +175,6 @@ class TaskPagesTests(TestCase):
                               kwargs={'post_id': self.post.id})
         )
         self.assertEqual(Comments.objects.count(), comments_count + 1)
-     
         self.assertTrue(Comments.objects.filter(post_id=self.post.id).exists())
 
     def test_check_cache(self):
