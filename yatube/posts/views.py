@@ -35,7 +35,6 @@ def post_detail(request, post_id):
     form = CommentForm()
     context = {
         'post': post,
-        'post_id': post_id,
         'comments': post.comments.all(),
         'form': form
     }
@@ -90,11 +89,8 @@ def add_comment(request, post_id):
 def profile_follow(request, username):
     user = request.user
     author = get_object_or_404(User, username=username)
-    if (
-            (user != author) and (Follow.objects.filter
-                                  (user=user, author=author).count() == 0)
-    ):
-        Follow.objects.create(
+    if user != author:
+        Follow.objects.get_or_create(
             user=user,
             author=author)
     return redirect('posts:follow_index')
