@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 {% block title %}<title>{{ group.title }}</title>{% endblock %}
 {%block content%}
   <h1>{{ group.title }}</h1>
@@ -17,10 +18,16 @@
           группа: {{ post.group }}
         </li>
         <li>
-          <p>Описание группы{{ group.description }}</p>
+          <p>Описание группы: {{ group.description }}</p>
         </li>
       </ul>
-      <p>{{ post.text }}</p>    
+        {% thumbnail post.image '960x640' crop='center' upscale=True as im %}
+            <img class='card-img my-2' src='{{ im.url }}'>
+         {% endthumbnail %}
+      <p>{{ post.text }}</p>
+
+    </article>
+
       {% if not forloop.last %}<hr>{% endif %}
     {% endfor %}
   </article>

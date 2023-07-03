@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 
-NUMBER_OF_POSTS: int = 10
+NUMBER_OF_POSTS: int = 3
 
 
 def get_paginator(request, argument):

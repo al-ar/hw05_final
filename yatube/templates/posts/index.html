@@ -3,7 +3,7 @@
 {% load thumbnail %}
 {%block content%}
 {% load cache %}
-{% cache 20 index_page %}
+{% cache 5 index_page %}
   {% include 'posts/includes/switcher.html' %}
   {% for posts in page_obj %}
   <article>
@@ -18,9 +18,9 @@
         Группа: {{ posts.group }}
       </li>
     </ul>
-  </article>  
-    <article class='col-12 col-md-9'>
-      {% thumbnail posts.image '960x339' crop='center' upscale=True as im %}
+  </article>
+    <article class='col-lg-12 col-md-6'>
+      {% thumbnail posts.image '640x480' crop='center' upscale=True as im %}
         <img class='card-img my-2' alt='картинка поста' src='{{ im.url }}'>
       {% endthumbnail %}
       <p>{{ posts.text }}</p>
